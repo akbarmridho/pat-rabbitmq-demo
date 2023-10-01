@@ -90,8 +90,6 @@ func fibonacciRPC(n int) (res int, err error) {
 }
 
 func main() {
-	rand.Seed(time.Now().UTC().UnixNano())
-
 	n := bodyFrom(os.Args)
 
 	log.Printf(" [x] Requesting fib(%d)", n)
@@ -99,6 +97,8 @@ func main() {
 	failOnError(err, "Failed to handle RPC request")
 
 	log.Printf(" [.] Got %d", res)
+	var forever chan struct{}
+	<-forever
 }
 
 func bodyFrom(args []string) int {
